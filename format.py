@@ -16,33 +16,48 @@ def reach_page(driver):
     submit.click()
     
     
-def accident_type(driver, allFields):
+def accident_type(driver):
     br = driver.find_elements(by=By.TAG_NAME, value="td")
+    allFields = ""
     for cell in br:
         allFields = allFields + cell.text
         
     return allFields.split("Details")
     
-def isolateTime(collection, time):    
+def getTime(collection, time):    
     length = len(collection)
     #Trimming the No. from each row; if/elif is for the ones that have 2 digits in hour
     for i in range(0, length):
-        collection[i] = collection[i][4:]
         if collection[i][1:2] == ':':
             time.append(collection[i][:7])
         elif collection[i][2:3] == ':':
             time.append(collection[i][:8])
 
+def getType(collection, type):
+    length = len(collection)
+    collection = ""
+    
+    # for i in range(0, length):
+        
+        
+
 def main():
     driver = webdriver.Chrome()
     reach_page(driver)
 
-    collection = accident_type(driver, allFields = "")
-        
-    time = []
-    isolateTime(collection, time)
+    collection = accident_type(driver)
     
-    print(time[0])
+    for c in collection:
+        c = c[4:]
+        print(c)
+            
+    time = []
+    getTime(collection, time)
+    
+    type = []
+    getType(collection, type)
+    
+    # print(time)
     
     
     
