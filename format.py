@@ -27,19 +27,35 @@ def accident_type(driver, collection):
             collection.append(c.text)
             
 def fillArrays(time, type, location, area, rows):
-    length = len(rows)
+    length = int(len(rows) / 7)
+    map = {}
     
+    # for i in range(0, length):
+    #     cell = rows[i]
+    #     for j in range(0, 120):
+    #         if i == 2 + (7 * j):
+    #             time.append(cell)
+    #         if i == 3 + (7 * j):
+    #             type.append(cell)
+    #         if i == 4 + (7 * j):
+    #             location.append(cell)
+    #         if i == 6 + (7 * j):
+    #             area.append(cell)      
+                
     for i in range(0, length):
-        cell = rows[i]
-        for j in range(0, 120):
-            if i == 2 + (7 * j):
-                time.append(cell)
-            if i == 3 + (7 * j):
-                type.append(cell)
-            if i == 4 + (7 * j):
-                location.append(cell)
-            if i == 6 + (7 * j):
-                area.append(cell)            
+        cell = rows[i]        
+        multiplier = 7 * i
+        
+        timeIndex = multiplier + 2
+        typeIndex = multiplier + 3
+        locationIndex = multiplier + 4
+        areaIndex = multiplier + 6
+        
+        time.append(rows[timeIndex])
+        type.append(rows[typeIndex])
+        location.append(rows[locationIndex])
+        area.append(rows[areaIndex])
+        
 
     
     """
