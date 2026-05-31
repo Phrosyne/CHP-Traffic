@@ -36,22 +36,8 @@ def accident_type(driver, collection):
             
 def getData(time, type, location, area, rows):
     length = int(len(rows) / 7)
-    map = {}
-    
-    # for i in range(0, length):
-    #     cell = rows[i]
-    #     for j in range(0, 120):
-    #         if i == 2 + (7 * j):
-    #             time.append(cell)
-    #         if i == 3 + (7 * j):
-    #             type.append(cell)
-    #         if i == 4 + (7 * j):
-    #             location.append(cell)
-    #         if i == 6 + (7 * j):
-    #             area.append(cell)      
                 
-    for i in range(0, length):
-        cell = rows[i]        
+    for i in range(0, length):      
         multiplier = 7 * i
         
         timeIndex = multiplier + 2
@@ -64,53 +50,9 @@ def getData(time, type, location, area, rows):
         location.append(rows[locationIndex])
         area.append(rows[areaIndex])
         
+    return time
 
-    
-    """
-    class Solution {
-        public int[] twoSum(int[] nums, int target) {
-            HashMap<Integer, Integer> map = new HashMap<>();
-        
-            for (int i = 0; i < nums.length; i++) {
-                int key = target - nums[i];
-                if (map.containsKey(key)) {
-                    return new int[] {map.get(key), i};
-                } else {
-                    map.put(nums[i], i);
-                }
-            }
-        
-            return new int[] {};
-        }
-    }
-    """
-    
 def querySequence(driver, rows, time, type, location, area):
     reach_page(driver)
     accident_type(driver, rows)
     getData(time, type, location, area, rows)
-
-def main():
-    options = webdriver.ChromeOptions()
-    options.add_experimental_option("detach", True)
-    driver = webdriver.Chrome()
-
-    rows = []
-    time = []
-    type = []
-    location = []
-    area = []
-
-
-    querySequence(driver, rows, time, type, location, area)
-            
-    NL = "\n"
-    print(f"{time}{NL}")
-    print(f"{type}{NL}")
-    print(f"{location}{NL}")
-    print(f"{area}{NL}")
-    
-    
-    
-if __name__ == "__main__":
-    main()
