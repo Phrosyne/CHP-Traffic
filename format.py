@@ -1,17 +1,24 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
+from selenium.webdriver.support.wait import WebDriverWait
 
 CommunicationCenter = "Los Angeles"
-#KEEP BROWSER OPEN
-# options = webdriver.ChromeOptions()
-# options.add_experimental_option("detach", True)
 
 def reach_page(driver):
-    driver.get("https://cad.chp.ca.gov/")    
+    driver.get("https://cad.chp.ca.gov/")  
+    wait = WebDriverWait(driver, timeout=2)
+        
     firstBox = driver.find_element(by=By.NAME, value="ddlComCenter")
+    
+    wait.until(lambda _ : firstBox.is_displayed())  
+
     submit = driver.find_element(by=By.NAME, value="btnCCGo")
+
+    wait.until(lambda _ : submit.is_displayed())  
+    
     firstBox.click()
     firstBox.send_keys(CommunicationCenter)
+    
     submit.click()
     
     #6 elements per row
