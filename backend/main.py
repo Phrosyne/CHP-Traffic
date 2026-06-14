@@ -1,10 +1,10 @@
 from selenium import webdriver
-
 from flask import Flask, jsonify
-import backend.format as format
+import format as format
 
 app = Flask(__name__)
-@app.route("/", methods=["GET"])
+
+@app.route("/api/", methods=["GET"])
 def data():
     driver = webdriver.Chrome()
     
