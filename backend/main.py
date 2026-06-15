@@ -11,10 +11,10 @@ def data():
     # driver = webdriver.Chrome()
     
     rows = []
-    # time = []
-    # type = []
-    # location = []
-    # area = []
+    time = []
+    type = []
+    location = []
+    area = []
 
     time = ['time']
     type = ['type']

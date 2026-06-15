@@ -1,30 +1,40 @@
-import { Text, View } from "react-native";
-import { useEffect } from "react";
+import { StyleSheet, Text, View } from "react-native";
+import { useState, useEffect } from "react";
+
+let object = {
+  area: [],
+  location: [],
+  time: [],
+  type: [],
+}
 
 function App() {
-  const fetchAPI = async () => {
-    const url = "http://localhost:5000/api";
-    const response = await fetch(url);
-    const data = await response.json();
-
-    console.log(data);
-  }
+  const [data, setData] = useState<any | null>(null);
 
   useEffect(() => {
-    fetchAPI();
+
+    fetch("http://localhost:5000/api")
+      .then(response => response.json())
+      .then(data => {
+        console.log(ta);
+        setData(data);
+      })
   }, []);
 
   return (
-    <View
-      style={{
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
-      <Text>Edit app/index.tsx to edit this screen.</Text>
+    <View>
+      <Text style={styles.mainText}>Area: </Text>
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  view: {
+    backgroundColor: 'black'
+  },
+  mainText: {
+    textAlign: 'center'
+  }
+})
 
 export default App;
