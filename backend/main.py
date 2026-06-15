@@ -1,20 +1,27 @@
 from selenium import webdriver
 from flask import Flask, jsonify
+from flask_cors import CORS
 import format as format
 
 app = Flask(__name__)
+cors = CORS(app)
 
-@app.route("/api/", methods=["GET"])
+@app.route("/api", methods=["GET"])
 def data():
-    driver = webdriver.Chrome()
+    # driver = webdriver.Chrome()
     
     rows = []
-    time = []
-    type = []
-    location = []
-    area = []
+    # time = []
+    # type = []
+    # location = []
+    # area = []
+
+    time = ['time']
+    type = ['type']
+    location = ['location']
+    area = ['area']
     
-    format.querySequence(driver, rows, time, type, location, area)
+    # format.querySequence(driver, rows, time, type, location, area)
     
     return jsonify({
         'time': time,
