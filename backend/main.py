@@ -6,9 +6,15 @@ import format as format
 app = Flask(__name__)
 cors = CORS(app)
 
+@app.route("/", methods=["GET"])
+def hello():
+    return jsonify({
+        'foo': 'bar'
+    })
+
 @app.route("/api", methods=["GET"])
 def data():
-    # driver = webdriver.Chrome()
+    driver = webdriver.Chrome()
     
     rows = []
     time = []
@@ -16,12 +22,14 @@ def data():
     location = []
     area = []
 
-    time = ['time']
-    type = ['type']
-    location = ['location']
-    area = ['area']
+    # time = ['time']
+    # type = ['type']
+    # location = ['location']
+    # area = ['area']
     
-    # format.querySequence(driver, rows, time, type, location, area)
+    format.querySequence(driver, rows, time, type, location, area)
+    
+    driver.close()
     
     return jsonify({
         'time': time,
@@ -29,3 +37,4 @@ def data():
         'location': location,
         'area': area
     }), 200
+    
